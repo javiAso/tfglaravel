@@ -3,6 +3,7 @@
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\PJController;
 use App\Http\Controllers\WeaponController;
+use App\Models\Equipment;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,10 +24,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 
-Route::get('/equipment', [EquipmentController::class,'index']);
+//Route::get('/equipment', [EquipmentController::class,'index']);
 Route::get('/weapon', [WeaponController::class,'index']);
 Route::view('/crearPJ', 'forms/formularioPJ');
-
+Route::view('/elegirEq', 'forms/formularioEq');
 
 //https://es.wikieducator.org/Usuario:ManuelRomero/Laravel/routing
 
@@ -90,4 +91,7 @@ Route::view('/about', 'about');
 Route::view('/contact', 'contact');
 
 Route::post('pj', [PJController::class,'store'])->name('pj.store');
+
+Route::get('/equipment', [EquipmentController::class,'store'])->name('eq.store');
+
 

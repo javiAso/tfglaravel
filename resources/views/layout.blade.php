@@ -20,7 +20,7 @@
     <div class="container">
         <div class="card my-5 bg-secondary">
             <div class="card-header">
-                <h4 class="text-center text-white">Creación de ficha del usuario (cabecera)</h4>
+                <h4 class="text-center text-white">@yield('titulo')</h4>
             </div>
             <div class="card-body">
                 <div class="card">

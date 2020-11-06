@@ -46,17 +46,17 @@
     <div class="form-group">
         <label for="raceSelection">Raza del personaje</label>
         <select class="custom-select" id="raceSelection" name="raceSelection">
-            <option value="1">Humano</option>
-            <option value="2">Elfo</option>
+            <option value="1">Elfo</option>
+            <option value="2">Mediano</option>
             <option value="3">Enano</option>
-            <option value="4">Mediano</option>
+            <option value="4">Humano</option>
         </select>
     </div>
     <div class="form-group">
         <label for="clasSelection">Clase del personaje</label>
         <select class="custom-select" id="classSelection" name="classSelection">
-            <option value="1">Hechicero</option>
-            <option value="2">Guerrero</option>
+            <option value="1">Guerrero</option>
+            <option value="2">Hechicero</option>
             <option value="3">Bribón</option>
         </select>
     </div>
@@ -99,8 +99,7 @@
     </div>
     <div class="form-group">
         <label for="lvl">Nivel</label>
-        <input type="text" class="form-control" id="lvl" name="lvl" disabled
-             value="1">
+        <input type="text" class="form-control" id="lvl" name="lvl" placeholder="nivel">
     <button type="submit" class="btn btn-dark">Guardar</button>
     </div>
 </form>

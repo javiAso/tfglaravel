@@ -16,4 +16,14 @@ class EquipmentController extends Controller
         return view('equipment', ['equipment' => $equipment]);
 
     }
+
+    public function store()
+    {
+
+        echo session('COD_PJ');
+        echo session('CLASS_PJ');
+
+
+    }
+
 }
