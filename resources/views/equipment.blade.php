@@ -8,6 +8,7 @@ Tienda
       <tr>
         <th>Nombre item</th>
         <th>Precio</th>
+        <th>Comprar</th>
       </tr>
     </thead>
     <tbody>
@@ -15,7 +16,13 @@ Tienda
         <tr>
             <td>{{$item->NAME}}</td>
             <td>{{$item->PRICE}}</td>
-          </tr>
+            <td>
+                <form action="{{ route('eq.addItem') }}" method="POST">
+                    @csrf
+                    <input id="itemID" name="itemID" type="hidden" value="{{$item->COD_EQUIPMENT}}">
+                    <button type="submit">Comprar</button>
+                </form>
+            </td>
 @endforeach
     </tbody>
   </table>
