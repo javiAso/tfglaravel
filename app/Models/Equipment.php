@@ -9,6 +9,8 @@ class Equipment extends Model
 {
     use HasFactory;
     protected $table = 'EQUIPMENT';
+    protected $primaryKey = 'COD_EQUIPMENT';
+    public $timestamps = false;
 
 
 }
