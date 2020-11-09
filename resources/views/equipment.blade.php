@@ -135,7 +135,7 @@ Tienda
     {{$total}}
 </div>
 
-
+<a href="{{ route('listPJ.addEQ') }}">Finalizar compra</a>
 
 @endsection
 

@@ -96,4 +96,4 @@ Route::get('/equipment', [EquipmentController::class,'store'])->name('eq.store')
 
 Route::post('/equipment', [EquipmentController::class,'addItem'])->name('eq.addItem');
 
-
+Route::get('/myCharacters', [PJController::class,'addEquipment'])->name('listPJ.addEQ');

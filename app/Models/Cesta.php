@@ -55,7 +55,7 @@ class Cesta {
 
         $moneda = explode(' ',$price)[1];
 
-        echo 'tipo moneda: '.$moneda. 'a<br>';
+
         switch ($moneda) {
             case 'mc':
                 return intval(explode(' ',$price)[0]) * $cantidad;
@@ -72,7 +72,7 @@ class Cesta {
     }
 
     public function conversorTotal($totalCobre){
-        echo $totalCobre;
+
         $mo = $totalCobre/100;
         $mp = ($totalCobre%100)/10;
         $mc = ($totalCobre%100)%10;

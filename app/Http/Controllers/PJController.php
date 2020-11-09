@@ -7,6 +7,7 @@ use App\Models\CLASS_TALENT;
 use App\Models\RACE_TALENT;
 use App\Models\CLASSS;
 use App\Models\PJ;
+use App\Models\PJ_EQUIPMENT;
 use App\Models\PJ_TALENT;
 use App\Models\RACE;
 use App\Models\TALENT;
@@ -106,6 +107,22 @@ class PJController extends Controller
         return view('PJSheet', ['PJ' => $pj , 'talents' => $pjTalents, 'raceName' => $raceName, 'className' => $className]);
 
 
+
+    }
+
+    public function addEquipment(){
+
+        $buyedItems = session('cesta')->getListadoProductos();
+        $quantity = session('cesta')->getCantidadProductos();
+        foreach ($buyedItems as $key => $value) {
+            $pjEquipment = new PJ_EQUIPMENT();
+            $pjEquipment->COD_EQUIPMENT = $key;
+            $pjEquipment->COD_PJ = session('COD_PJ');
+            $pjEquipment->QUANTITY = $quantity["$key"];
+            $pjEquipment->save();
+        }
+
+        return 'equipo guardado';
 
     }
 }
