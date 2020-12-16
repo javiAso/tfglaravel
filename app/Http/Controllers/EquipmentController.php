@@ -67,7 +67,7 @@ class EquipmentController extends Controller
         //var_dump($buyedItems);
         //foreach ($buyedItems as $item)
 
-        echo '<pre>' ,session('COD_PJ') . session('CLASS_PJ'); '</pre>';
+        //echo '<pre>' ,session('COD_PJ') . session('CLASS_PJ'); '</pre>';
 
 
 

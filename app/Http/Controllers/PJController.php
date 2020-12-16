@@ -34,12 +34,14 @@ class PJController extends Controller
 
         //habilidades
 
-        $pj->ALERT = $request->customCheckAlert == 'on' ? 1 : 0;
-        $pj->MANIPULATION = $request->customCheckManipulation == 'on' ? 1 : 0;
-        $pj->ERUDITION = $request->customCheckErudition == 'on' ? 1 : 0;
-        $pj->SUBTERFUGE = $request->customCheckSubterfuge == 'on' ? 1 : 0;
-        $pj->SURVIVAL = $request->customCheckSurvival == 'on' ? 1 : 0;
-        $pj->COMMUNICATION = $request->customCheckCommunication == 'on' ? 1 : 0;
+
+
+        $pj->ALERT = $request->alert == 'on' ? 1 : 0;
+        $pj->MANIPULATION = $request->manipulation == 'on' ? 1 : 0;
+        $pj->ERUDITION = $request->erudition == 'on' ? 1 : 0;
+        $pj->SUBTERFUGE = $request->subterfuge == 'on' ? 1 : 0;
+        $pj->SURVIVAL = $request->survival == 'on' ? 1 : 0;
+        $pj->COMMUNICATION = $request->communication == 'on' ? 1 : 0;
 
         //atributos
 
@@ -68,43 +70,33 @@ class PJController extends Controller
 
 
 
-
-
         $pj->save();
+
 
         //talentos
 
         $classTalents = CLASS_TALENT::where('COD_CLASS', $pj->COD_CLASS)->get();
         $raceTalents = RACE_TALENT::where('COD_RACE', $pj->COD_RACE)->get();
-        $pjTalents =[];
+
 
         foreach ($classTalents as $classTalent) {
             $pjTalent = new PJ_TALENT();
             $pjTalent->COD_TALENT = $classTalent->COD_TALENT;
             $pjTalent->COD_PJ = $pj->COD_PJ;
             $pjTalent->save();
-            $pjTalents[] = TALENT::where('COD_TALENT',$classTalent->COD_TALENT)->first();
+
         }
         foreach ($raceTalents as $raceTalent) {
             $pjTalent = new PJ_TALENT();
             $pjTalent->COD_TALENT = $raceTalent->COD_TALENT;
             $pjTalent->COD_PJ = $pj->COD_PJ;
             $pjTalent->save();
-            $pjTalents[] = TALENT::where('COD_TALENT',$raceTalent->COD_TALENT)->first();
+
         }
 
-        //nombre raza y clase
 
-        $raceName= DB::select('select NAME from RACE where COD_RACE = ?',[$pj->COD_RACE])[0];
-        $className = DB::select('select NAME from CLASS where COD_CLASS = ?',[$pj->COD_CLASS])[0];
+        return $this->viewSheet($pj->COD_PJ);
 
-
-        session_start();
-        session(['COD_PJ' => $pj->COD_PJ]);
-        session(['CLASS_PJ' => $pj->COD_CLASS]);
-
-
-        return view('PJSheet', ['PJ' => $pj , 'talents' => $pjTalents, 'raceName' => $raceName, 'className' => $className]);
 
 
 
@@ -122,7 +114,46 @@ class PJController extends Controller
             $pjEquipment->save();
         }
 
-        return 'equipo guardado';
+        return $this->pjList();
+
+    }
+
+    public function pjList(){
+        //$classTalents = CLASS_TALENT::where('COD_CLASS', $pj->COD_CLASS)->get();
+        $pjs = PJ::where('COD_USER',2)->get();
+        //var_dump($pjs);
+        //var_dump($pjs);
+        //echo($pjs);
+        return view('home', ['PJs' => $pjs]);
+
+    }
+
+    public function viewSheet($id){
+
+        $pj = PJ::where('COD_PJ',$id)->first();
+
+        //talentos
+
+        $pjTalents =[];
+
+        $pjTalentsCOD =PJ_TALENT::where('COD_PJ',$id)->pluck('COD_TALENT');
+
+
+        foreach ($pjTalentsCOD as $talentCOD) {
+            $pjTalents[] = TALENT::where('COD_TALENT',$talentCOD)->first();
+        }
+
+        //nombre raza y clase
+
+        $raceName= RACE::where('COD_RACE',$pj->COD_RACE)->pluck('NAME')->first();
+        $className= CLASSS::where('COD_CLASS',$pj->COD_CLASS)->pluck('NAME')->first();
+
+        session_start();
+        session(['COD_PJ' => $pj->COD_PJ]);
+        session(['CLASS_PJ' => $pj->COD_CLASS]);
+
+
+        return view('PJSheet', ['PJ' => $pj , 'talents' => $pjTalents, 'raceName' => $raceName, 'className' => $className]);
 
     }
 }

@@ -7,100 +7,140 @@
 
     @csrf
 
-    <div class="form-group">
-        <label for="characterName">Nombre del personaje</label>
-        <input type="text" class="form-control" id="characterName" name="characterName"
-            placeholder="Nombre del personaje">
-    </div>
-    <label>Atributos del personaje</label>
-    <div class="form-group">
-        <label for="characterStrength">Fuerza</label>
-        <input type="text" class="form-control" id="characterStrength"  name="characterStrength"
-            placeholder="Fuerza">
-    </div>
-    <div class="form-group">
-        <label for="characterDexterity">Destreza</label>
-        <input type="text" class="form-control" id="characterDexterity"  name="characterDexterity"
-            placeholder="Destreza">
-    </div>
-    <div class="form-group">
-        <label for="characterConstitution">Constitución</label>
-        <input type="text" class="form-control" id="characterConstitution" name="characterConstitution"
-            placeholder="Constitución">
-    </div>
-    <div class="form-group">
-        <label for="characterIntelligence">Inteligencia</label>
-        <input type="text" class="form-control" id="characterIntelligence" name="characterIntelligence"
-            placeholder="Inteligencia">
-    </div>
-    <div class="form-group">
-        <label for="characterWisdom">Sabiduría</label>
-        <input type="text" class="form-control" id="characterWisdom" name="characterWisdom"
-            placeholder="Sabiduría">
-    </div>
-    <div class="form-group">
-        <label for="characterCharisma">Carisma</label>
-        <input type="text" class="form-control" id="characterCharisma" name="characterCharisma"
-            placeholder="Carisma">
-    </div>
-    <div class="form-group">
-        <label for="raceSelection">Raza del personaje</label>
-        <select class="custom-select" id="raceSelection" name="raceSelection">
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label>Character Name</label><br>
+          <input type="text" placeholder="Place here your character name" id="characterName" name="characterName">
+        </div>
+        <div class="form-group">
+          <label>Character Race</label><br>
+          <select class="custom-select" id="raceSelection" name="raceSelection">
             <option value="1">Elfo</option>
             <option value="2">Mediano</option>
             <option value="3">Enano</option>
             <option value="4">Humano</option>
         </select>
-    </div>
-    <div class="form-group">
-        <label for="clasSelection">Clase del personaje</label>
-        <select class="custom-select" id="classSelection" name="classSelection">
+        </div>
+        <div class="form-group">
+          <label>Character Class</label><br>
+          <select class="custom-select" id="classSelection" name="classSelection">
             <option value="1">Guerrero</option>
             <option value="2">Hechicero</option>
             <option value="3">Bribón</option>
         </select>
+        </div>
+        <div class="form-group">
+          <label>Character background</label><br>
+          <input type="text" placeholder="Place here your character background" id="backGround" name="backGround">
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label>XP:</label><br>
+              <input type="number" placeholder="px" id="expPoints" name="expPoints" min="0">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label>lvl:</label><br>
+              <input type="number" placeholder="lvl" id="lvl" name="lvl" min="0">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label>Choose 6 of those abilities:</label><br>
+          <div class="row">
+            <div class="col">
+              <div class="row">
+                <div class="col">
+                  <input type="checkbox" name="alert" id="alert">
+                  <label for="alert"> alert</label>
+                </div>
+                <div class="col">
+                  <input type="checkbox" name="communication" id="communication">
+                  <label for="communication"> communication</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="row">
+                <div class="col">
+                  <input type="checkbox" name="manipulation" id="manipulation">
+                  <label for="manipulation"> manipulation</label>
+                </div>
+                <div class="col">
+                  <input type="checkbox" name="erudition" id="erudition">
+                  <label for="erudition"> erudition</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="row">
+                <div class="col">
+                  <input type="checkbox" name="subterfuge" id="subterfuge">
+                  <label for="subterfuge"> subterfuge</label>
+                </div>
+                <div class="col">
+                  <input type="checkbox" name="survival" id="survival">
+                  <label for="survival"> survival</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label>Attributes:</label><br>
+            <div class="row">
+              <div class="col">
+                <div class="row">
+                  <div class="col mb-3">
+                    <input type="number" placeholder="Strenght" id="characterStrength"  name="characterStrength" min="0">
+                  </div>
+                  <div class="col mb-3">
+                    <input type="number" placeholder="Dexterity" id="characterDexterity"  name="characterDexterity" min="0">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="row">
+                  <div class="col mb-3">
+                    <input type="number" placeholder="Constitution" id="characterConstitution" name="characterConstitution" min="0">
+                  </div>
+                  <div class="col mb-3">
+                    <input type="number" placeholder="Wisdom" id="characterWisdom" name="characterWisdom" min="0">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="row">
+                  <div class="col mb-3">
+                    <input type="number" placeholder="Intelligence" id="characterIntelligence" name="characterIntelligence" min="0">
+                  </div>
+                  <div class="col mb-3">
+                    <input type="number" placeholder="Charisma" id="characterCharisma" name="characterCharisma" min="0">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-    <div class="form-group">
-        <label>Elije 4 de estas 6 habilidades:</label>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="customCheckAlert" name="customCheckAlert">
-            <label class="custom-control-label" for="customCheckAlert">Alerta</label>
-        </div>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="customCheckCommunication" name="customCheckCommunication">
-            <label class="custom-control-label" for="customCheckCommunication">Comunicacion</label>
-        </div>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="customCheckManipulation" name="customCheckManipulation">
-            <label class="custom-control-label" for="customCheckManipulation">Manipulacion</label>
-        </div>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="customCheckErudition" name="customCheckErudition">
-            <label class="custom-control-label" for="customCheckErudition">Erudicion</label>
-        </div>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="customCheckSubterfuge" name="customCheckSubterfuge">
-            <label class="custom-control-label" for="customCheckSubterfuge">Subterfugio</label>
-        </div>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="customCheckSurvival" name="customCheckSurvival">
-            <label class="custom-control-label" for="customCheckSurvival">Supervivencia</label>
-        </div>
+    <div class="row pl-4">
+      <button type="submit" class="btn btn-dark">Save</button>
     </div>
-    <div class="form-group">
-        <label for="backGround">Trasfondo</label>
-        <input type="text" class="form-control" id="backGround" name="backGround"
-            placeholder="Trasfondo">
-    </div>
-    <div class="form-group">
-        <label for="expPoints">Puntos exp.</label>
-        <input type="text" class="form-control" id="expPoints" name="expPoints"
-            placeholder="Puntos exp.">
-    </div>
-    <div class="form-group">
-        <label for="lvl">Nivel</label>
-        <input type="text" class="form-control" id="lvl" name="lvl" placeholder="nivel">
-    <button type="submit" class="btn btn-dark">Guardar</button>
-    </div>
-</form>
+  </form>
 @endsection

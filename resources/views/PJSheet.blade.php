@@ -5,55 +5,266 @@
 @section('contenido')
 
 
-<label><b>Raza: </b>{{$raceName->NAME}}</label>
-<label><b>Clase: </b>{{$className->NAME}}</label>
-<label><b>Trasfondo: </b>{{$PJ->BACKGROUND}}</label>
-<label><b>Nivel: </b>{{$PJ->LEVEL}}</label>
-<label><b>XP: </b>{{$PJ->XP}}</label>
+    <div class="row">
+      <div class="col-6">
+        <div class="row">
+          <div class="col">
+            <label>Character race: </label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$raceName}}</label>
+          </div>
+          <div class="col">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Character class: </label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$className}}</label>
+          </div>
+          <div class="col">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Character background: </label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->BACKGROUND}}</label>
+          </div>
+          <div class="col">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>XP: </label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->XP}}</label>
+          </div>
+          <div class="col">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>lvl </label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->LEVEL}}</label>
+          </div>
+          <div class="col">
+          </div>
+        </div>
 
-<hr>
+      </div>
+      <div class="col-6">
+        <div class="row">
+          <div class="col">
+            <label>Abilities: </label>
+          </div>
+          <div class="col">
 
-<label>Habilidades:</label><br>
+          </div>
+          <div class="col">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Alert: </label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->ALERT}}</label>
+          </div>
+          <div class="col">
+            <label>Erudition:</label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->ERUDITION}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Communication: </label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->COMMUNICATION}}</label>
+          </div>
+          <div class="col">
+            <label>Subterfuge:</label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->SUBTERFUGE}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Manipulation: </label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->MANIPULATION}} </label>
+          </div>
+          <div class="col">
+            <label>Survival:</label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->SURVIVAL}}</label>
+          </div>
+        </div>
+      </div>
 
-<label><b>Alerta: </b>{{$PJ->ALERT}}</label>
-<label><b>Comunicación: </b>{{$PJ->COMMUNICATION}}</label>
-<label><b>Manipulación: </b>{{$PJ->MANIPULATION}}</label>
-<label><b>Erudición: </b>{{$PJ->ERUDITION}}</label>
-<label><b>Subterfugio: </b>{{$PJ->SUBTERFUGE}}</label>
-<label><b>Supervivencia: </b>{{$PJ->SURVIVAL}}</label>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-6">
+        <div class="row">
+          <div class="col">
+            <label>Features: </label>
+          </div>
+          <div class="col">
 
-<hr>
+          </div>
+          <div class="col">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>P V: </label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->PV}} </label>
+          </div>
+          <div class="col">
+            <label>Melee attack:</label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->ATTACKM}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Movement: </label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->MOVEMENT}} meters</label>
+          </div>
+          <div class="col">
+            <label>Ranged atack:</label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->ATTACKR}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Defense: </label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->DEFENSE}}</label>
+          </div>
+          <div class="col">
+            <label>Instincts:</label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->INSTINCT}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Power: </label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->POWER}}</label>
+          </div>
+          <div class="col">
 
-<label>Atributos:</label><br>
+          </div>
+          <div class="col">
 
-<label><b>Fuerza: </b>{{$PJ->STRENGTH}}</label>
-<label><b>Destreza: </b>{{$PJ->DEXTERITY}}</label>
-<label><b>Constitución: </b>{{$PJ->CONSTITUTION}}</label>
-<label><b>Inteligencia: </b>{{$PJ->INTELLIGENCE}}</label>
-<label><b>Sabiduría: </b>{{$PJ->WISDOM}}</label>
-<label><b>Carisma: </b>{{$PJ->CHARISMA}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="row">
+          <div class="col">
+            <label>Attributes: </label>
+          </div>
+          <div class="col">
 
-<hr>
+          </div>
+          <div class="col">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Strength: </label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->STRENGTH}}</label>
+          </div>
+          <div class="col">
+            <label>Intelligence:</label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->INTELLIGENCE}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Dexterity: </label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->DEXTERITY}}</label>
+          </div>
+          <div class="col">
+            <label>Wisdom:</label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->WISDOM}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Constitution: </label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->CONSTITUTION}}</label>
+          </div>
+          <div class="col">
+            <label>Charisma:</label>
+          </div>
+          <div class="col">
+            <label class="font-weight-normal">{{$PJ->CHARISMA}} </label>
+          </div>
+        </div>
+      </div>
 
-<label>Rasgos:</label><br>
+    </div>
 
-<label><b>Puntos de vida: </b>{{$PJ->PV}}</label>
-<label><b>Movimiento: </b>{{$PJ->MOVEMENT}} metros</label>
-<label><b>Defensa: </b>{{$PJ->DEFENSE}}</label>
-<label><b>Ataque cuerpo a cuerpo: </b>{{$PJ->ATTACKM}}</label>
-<label><b>Ataque a distancia: </b>{{$PJ->ATTACKR}}</label>
-<label><b>Instintos: </b>{{$PJ->INSTINCT}}</label>
-<label><b>Poder: </b>{{$PJ->POWER}}</label>
-
-<hr>
-
-<label>Talentos: </label><br>
-
-@foreach ($talents as $talent)
-<label><b>{{$talent->NAME}}:  </b>{{$talent->DESCRIPTION}}</label>
-@endforeach
-
-<a href="{{ route('eq.store')}}"><button class="btn btn-dark">Comprar equipo</button></a>
+    <hr>
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            <label>Talents: </label>
+          </div>
+        </div>
+        @foreach ($talents as $talent)
+        <div class="row">
+            <div class="col-2">
+              <label>{{$talent->NAME}} </label>
+            </div>
+            <div class="col-10">
+              <label class="font-weight-normal">{{$talent->DESCRIPTION}}</label>
+            </div>
+          </div>
+        @endforeach
+      </div>
+    </div>
+    <div class="row pl-4 mt-4">
+        <a href="{{ route('eq.store')}}"><button class="btn btn-dark">Comprar equipo</button></a>
+    </div>
 
 
 @endsection
