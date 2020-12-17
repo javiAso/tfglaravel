@@ -14,14 +14,21 @@ use App\Models\TALENT;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use function PHPUnit\Framework\isEmpty;
+
 class PJController extends Controller
 {
 
 
     public function store(Request $request)
     {
+        if (empty($request->cod_pj)) {
+            $pj = new PJ();
+        } else {
+            $pj = PJ::find($request->cod_pj);
+        }
 
-        $pj = new PJ();
+
 
         $pj->NAME = $request->characterName;
         $pj->LEVEL = $request->lvl;
@@ -78,8 +85,12 @@ class PJController extends Controller
         $classTalents = CLASS_TALENT::where('COD_CLASS', $pj->COD_CLASS)->get();
         $raceTalents = RACE_TALENT::where('COD_RACE', $pj->COD_RACE)->get();
 
+        if (!empty($request->cod_pj)) {
+            DB::delete('delete FROM PJ_TALENT where COD_PJ = ?', [$request->cod_pj]);
+        }
 
         foreach ($classTalents as $classTalent) {
+
             $pjTalent = new PJ_TALENT();
             $pjTalent->COD_TALENT = $classTalent->COD_TALENT;
             $pjTalent->COD_PJ = $pj->COD_PJ;
@@ -107,23 +118,29 @@ class PJController extends Controller
         $buyedItems = session('cesta')->getListadoProductos();
         $quantity = session('cesta')->getCantidadProductos();
         foreach ($buyedItems as $key => $value) {
-            $pjEquipment = new PJ_EQUIPMENT();
-            $pjEquipment->COD_EQUIPMENT = $key;
-            $pjEquipment->COD_PJ = session('COD_PJ');
-            $pjEquipment->QUANTITY = $quantity["$key"];
-            $pjEquipment->save();
+
+            $pjEquipment = PJ_EQUIPMENT::where('COD_PJ','=', session('COD_PJ'))->where('COD_EQUIPMENT','=', $key)->first();
+
+            if ($pjEquipment == null) {
+                $pjEquipment = new PJ_EQUIPMENT();
+                $pjEquipment->COD_EQUIPMENT = $key;
+                $pjEquipment->COD_PJ = session('COD_PJ');
+                $pjEquipment->QUANTITY = $quantity["$key"];
+                $pjEquipment->save();
+            } else {
+                $pjEquipment->QUANTITY += $quantity["$key"];
+                $pjEquipment->save();
+            }
+
         }
 
-        return $this->pjList();
+        return $this->viewSheet(session('COD_PJ'));
 
     }
 
     public function pjList(){
-        //$classTalents = CLASS_TALENT::where('COD_CLASS', $pj->COD_CLASS)->get();
+
         $pjs = PJ::where('COD_USER',2)->get();
-        //var_dump($pjs);
-        //var_dump($pjs);
-        //echo($pjs);
         return view('home', ['PJs' => $pjs]);
 
     }
@@ -148,12 +165,68 @@ class PJController extends Controller
         $raceName= RACE::where('COD_RACE',$pj->COD_RACE)->pluck('NAME')->first();
         $className= CLASSS::where('COD_CLASS',$pj->COD_CLASS)->pluck('NAME')->first();
 
+        //equipment
+
+
+        $equipment =  DB::table('PJ_EQUIPMENT')
+        ->join('EQUIPMENT', 'PJ_EQUIPMENT.COD_EQUIPMENT', '=', 'EQUIPMENT.COD_EQUIPMENT')
+        ->select('PJ_EQUIPMENT.QUANTITY', 'EQUIPMENT.NAME')
+        ->where('PJ_EQUIPMENT.COD_PJ','=',$pj->COD_PJ)
+        ->get();
+
         session_start();
         session(['COD_PJ' => $pj->COD_PJ]);
         session(['CLASS_PJ' => $pj->COD_CLASS]);
 
 
-        return view('PJSheet', ['PJ' => $pj , 'talents' => $pjTalents, 'raceName' => $raceName, 'className' => $className]);
+        return view('PJSheet', ['PJ' => $pj , 'talents' => $pjTalents, 'raceName' => $raceName, 'className' => $className, 'equipment' => $equipment]);
+
+    }
+
+    public function updateSheet($id){
+
+        $pj = PJ::where('COD_PJ',$id)->first();
+
+        //talentos
+
+        $pjTalents =[];
+
+        $pjTalentsCOD =PJ_TALENT::where('COD_PJ',$id)->pluck('COD_TALENT');
+
+
+        foreach ($pjTalentsCOD as $talentCOD) {
+            $pjTalents[] = TALENT::where('COD_TALENT',$talentCOD)->first();
+        }
+
+        //nombre raza y clase
+
+        $raceName= RACE::where('COD_RACE',$pj->COD_RACE)->pluck('NAME')->first();
+        $className= CLASSS::where('COD_CLASS',$pj->COD_CLASS)->pluck('NAME')->first();
+
+        //equipment
+
+
+        $equipment =  DB::table('PJ_EQUIPMENT')
+        ->join('EQUIPMENT', 'PJ_EQUIPMENT.COD_EQUIPMENT', '=', 'EQUIPMENT.COD_EQUIPMENT')
+        ->select('PJ_EQUIPMENT.QUANTITY', 'EQUIPMENT.NAME')
+        ->where('PJ_EQUIPMENT.COD_PJ','=',$pj->COD_PJ)
+        ->get();
+
+        session_start();
+        session(['COD_PJ' => $pj->COD_PJ]);
+        session(['CLASS_PJ' => $pj->COD_CLASS]);
+
+
+        return view('forms.formUpdatePJ', ['PJ' => $pj , 'talents' => $pjTalents, 'raceName' => $raceName, 'className' => $className, 'equipment' => $equipment]);
+
+    }
+
+    public function deleteSheet($id){
+
+        DB::delete('delete FROM PJ where COD_PJ = ?', [$id]);
+
+        return $this->pjList();
+
 
     }
 }

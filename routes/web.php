@@ -102,3 +102,7 @@ Route::get('/mysheets', [PJController::class,'pjList'])->name('listPJ.viewList')
 
 Route::get('/sheet/{id}', [PJController::class,'viewSheet'])->name('listPJ.viewSheet');
 
+Route::get('/updateSheet/{id}', [PJController::class,'updateSheet'])->name('sheet.updateSheet');
+
+Route::get('/mysheets/{id}', [PJController::class,'deleteSheet'])->name('sheet.deleteSheet');
+

@@ -262,8 +262,36 @@
         @endforeach
       </div>
     </div>
+    <hr>
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            <label>Equipment: </label>
+          </div>
+        </div>
+        @foreach ($equipment as $item)
+        <div class="row">
+            <div class="col-6">
+              <label>{{$item->NAME}} </label>
+            </div>
+            <div class="col-6">
+              <label class="font-weight-normal">{{$item->QUANTITY}}</label>
+            </div>
+          </div>
+        @endforeach
+      </div>
+    </div>
     <div class="row pl-4 mt-4">
-        <a href="{{ route('eq.store')}}"><button class="btn btn-dark">Comprar equipo</button></a>
+        <div class="col-10">
+            <a href="{{ route('eq.store')}}"><button class="btn btn-dark">Buy equipment</button></a>
+            <a href="{{ route('sheet.updateSheet',$PJ->COD_PJ)}}"><button class="btn btn-dark ml-4">Update</button></a>
+            <a href="{{ route('listPJ.viewList')}}"><button class="btn btn-dark ml-4">Back</button></a>
+        </div>
+        <div class="col-2">
+            <a href="{{ route('sheet.deleteSheet',$PJ->COD_PJ)}}"><button class="btn btn-danger ml-4">Delete</button></a>
+        </div>
+
     </div>
 
 
