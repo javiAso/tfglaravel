@@ -11,19 +11,24 @@ User name
                 <thead class="thead-dark">
                     <tr>
                         <th>Name</th>
+                        <th>Race</th>
+                        <th>Class</th>
+                        <th>Level</th>
                         <th>View sheet</th>
-                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($PJs as $pj)
                     <tr>
                         <td class="font-weight-bold">{{$pj->NAME}}</td>
+                        <td class="font-weight-bold">{{$pj->RACE}}</td>
+                        <td class="font-weight-bold">{{$pj->CLASS}}</td>
+                        <td class="font-weight-bold">{{$pj->LEVEL}}</td>
                         <td>
                             <form action="{{ route('listPJ.viewSheet',$pj->COD_PJ) }}" method="GET">
                                 <button type="submit" class="btn btn-success">Go</button>
-                            </form></td>
-                        <td><button type="button" class="btn btn-danger">Delete</button></td>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -40,7 +45,7 @@ User name
         <div class="col">
             <div class="btn-group float-right" role="group" aria-label="Basic example">
                 <form action="newChar.html">
-                    <button type="submit" class="btn btn-dark">New character</button>
+                    <a href="{{route('sheet.newSheet')}}" class="btn btn-dark">New character</a>
                 </form>
             </div>
         </div>

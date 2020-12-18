@@ -141,7 +141,7 @@
     </div>
     <div class="row pl-4">
       <button type="submit" class="btn btn-dark">Save</button>
-      <button type="submit" class="btn btn-dark">Save</button>
+      <a href="{{route('listPJ.viewList')}}" class="btn btn-dark ml-4">Back</a>
     </div>
   </form>
 @endsection

@@ -140,7 +140,13 @@ class PJController extends Controller
 
     public function pjList(){
 
-        $pjs = PJ::where('COD_USER',2)->get();
+        $pjs=DB::table('PJ')
+        ->join('RACE', 'PJ.COD_RACE', '=', 'RACE.COD_RACE')
+        ->join('CLASS', 'PJ.COD_CLASS', '=', 'CLASS.COD_CLASS')
+        ->select('PJ.COD_PJ','PJ.NAME','PJ.LEVEL','CLASS.NAME as CLASS','RACE.NAME as RACE')
+        ->where('PJ.COD_USER','=',2)
+        ->get();
+
         return view('home', ['PJs' => $pjs]);
 
     }
@@ -187,13 +193,13 @@ class PJController extends Controller
 
         $pj = PJ::where('COD_PJ',$id)->first();
 
-        //talentos
-
-        $pjTalents =[];
+        // guardo códigos de talentos:
 
         $pjTalentsCOD =PJ_TALENT::where('COD_PJ',$id)->pluck('COD_TALENT');
 
+        //Guardo nombre y descripción de talentos:
 
+        $pjTalents =[];
         foreach ($pjTalentsCOD as $talentCOD) {
             $pjTalents[] = TALENT::where('COD_TALENT',$talentCOD)->first();
         }
@@ -221,9 +227,16 @@ class PJController extends Controller
 
     }
 
-    public function deleteSheet($id){
+    public function deleteSheet(Request $request){//Tenemos que hacer un borrado en cascada:
 
-        DB::delete('delete FROM PJ where COD_PJ = ?', [$id]);
+        //Borramos los registros de la tabla de PJ_TALENT:
+        DB::delete('delete FROM PJ_TALENT where COD_PJ = ?', [$request->COD_PJ]);
+
+        //Borramos los registros de la tabla de PJ_EQUIPMENT:
+        DB::delete('delete FROM PJ_EQUIPMENT where COD_PJ = ?', [$request->COD_PJ]);
+
+        //Borramos el pj:
+        DB::delete('delete FROM PJ where COD_PJ = ?', [$request->COD_PJ]);
 
         return $this->pjList();
 

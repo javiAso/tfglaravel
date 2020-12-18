@@ -26,7 +26,7 @@ Route::view('/', 'welcome');
 
 //Route::get('/equipment', [EquipmentController::class,'index']);
 Route::get('/weapon', [WeaponController::class,'index']);
-Route::view('/crearPJ', 'forms/formularioPJ');
+Route::view('/crearPJ', 'forms/formularioPJ')->name('sheet.newSheet');
 Route::view('/elegirEq', 'forms/formularioEq');
 
 //https://es.wikieducator.org/Usuario:ManuelRomero/Laravel/routing
@@ -104,5 +104,5 @@ Route::get('/sheet/{id}', [PJController::class,'viewSheet'])->name('listPJ.viewS
 
 Route::get('/updateSheet/{id}', [PJController::class,'updateSheet'])->name('sheet.updateSheet');
 
-Route::get('/mysheets/{id}', [PJController::class,'deleteSheet'])->name('sheet.deleteSheet');
+Route::post('/mysheets', [PJController::class,'deleteSheet'])->name('sheet.deleteSheet');
 

@@ -289,7 +289,12 @@
             <a href="{{ route('listPJ.viewList')}}"><button class="btn btn-dark ml-4">Back</button></a>
         </div>
         <div class="col-2">
-            <a href="{{ route('sheet.deleteSheet',$PJ->COD_PJ)}}"><button class="btn btn-danger ml-4">Delete</button></a>
+            <form action="{{ route('sheet.deleteSheet')}}" method="post">
+                @csrf
+                <input type="hidden" name="COD_PJ" id="COD_PJ" value="{{$PJ->COD_PJ}}">
+                <button type="submit" class="btn btn-danger ml-4">Delete</button>
+            </form>
+
         </div>
 
     </div>
