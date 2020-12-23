@@ -1,4 +1,7 @@
 @extends('layout')
+@section('titulo')
+New PJ
+@endsection
 @section('contenido')
 
 

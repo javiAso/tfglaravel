@@ -37,9 +37,9 @@ User name
     </div>
     <div class="row mt-3">
         <div class="col">
-            <form action="gameList.html">
-                <button type="submit" class="btn btn-dark">Game list</button>
-            </form>
+
+                <a href="{{route('listgame.viewList')}}" class="btn btn-dark">Game list</a>
+
 
         </div>
         <div class="col">
