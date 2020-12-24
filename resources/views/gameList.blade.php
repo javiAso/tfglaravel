@@ -6,6 +6,34 @@ User name
 
 
     <div class="card">
+        <div class="col text-center"><h3 >Games owned</h3></div>
+        <div class="card-body">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Game tittle</th>
+                        <th>Game master</th>
+                        <th>View game</th>
+                        <th>Leave game</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($gamesOwned as $game)
+                    <tr>
+                        <td class="font-weight-bold">{{$game->TITTLE}}</td>
+                        <td class="font-weight-bold">{{$master->USERNAME}}</td>
+                        <td>
+                            <form action="{{ route('listGame.viewGame',$game->COD_GAME) }}" method="GET">
+                                <button type="submit" class="btn btn-success">Go</button>
+                            </form>
+                        </td>
+                        <td><button type="button" class="btn btn-danger">Leave</button></td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div class="col text-center"><h3 >Games currently playing</h3></div>
 
         <div class="card-body">
             <table class="table">
@@ -18,10 +46,10 @@ User name
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($games as $game)
+                    @foreach ($gamesPlayed as $game)
                     <tr>
                         <td class="font-weight-bold">{{$game->TITTLE}}</td>
-                        <td class="font-weight-bold">{{$master->USERNAME}}</td>
+                        <td class="font-weight-bold">{{$game->USERNAME}}</td>
                         <td>
                             <form action="{{ route('listGame.viewGame',$game->COD_GAME) }}" method="GET">
                                 <button type="submit" class="btn btn-success">Go</button>

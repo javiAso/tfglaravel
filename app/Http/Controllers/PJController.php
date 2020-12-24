@@ -6,6 +6,7 @@ use App\Models\ADVLVL;
 use App\Models\CLASS_TALENT;
 use App\Models\RACE_TALENT;
 use App\Models\CLASSS;
+use App\Models\Game;
 use App\Models\PJ;
 use App\Models\PJ_EQUIPMENT;
 use App\Models\PJ_TALENT;
@@ -13,8 +14,8 @@ use App\Models\RACE;
 use App\Models\TALENT;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
-use function PHPUnit\Framework\isEmpty;
+use App\Http\Controllers\GameController;
+use Illuminate\Validation\Rules\Exists;
 
 class PJController extends Controller
 {
@@ -184,8 +185,11 @@ class PJController extends Controller
         session(['COD_PJ' => $pj->COD_PJ]);
         session(['CLASS_PJ' => $pj->COD_CLASS]);
 
+        //nombre partida
 
-        return view('PJSheet', ['PJ' => $pj , 'talents' => $pjTalents, 'raceName' => $raceName, 'className' => $className, 'equipment' => $equipment]);
+        $gameName = Game::find($pj->COD_GAME)->TITTLE;
+
+        return view('PJSheet', ['PJ' => $pj , 'talents' => $pjTalents, 'raceName' => $raceName, 'className' => $className, 'equipment' => $equipment, 'gameName' => $gameName]);
 
     }
 
@@ -242,4 +246,6 @@ class PJController extends Controller
 
 
     }
+
+
 }

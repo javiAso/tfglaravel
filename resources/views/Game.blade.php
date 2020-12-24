@@ -155,10 +155,19 @@
       </div>
     </div>
     <div class="row pl-4 mt-4">
-        <div class="col">
+        <div class="col-10">
 
             <a href=""><button class="btn btn-dark ml-4">New Story</button></a>
+            <a href="{{ route('game.updateGame',$game->COD_GAME)}}"><button class="btn btn-dark ml-1">Update</button></a>
             <a href="{{ route('listgame.viewList')}}"><button class="btn btn-dark ml-4">Back</button></a>
+        </div>
+
+        <div class="col-2">
+            <form action="{{ route('listgame.viewList')}}" method="post">
+                @csrf
+                <input type="hidden" name="delete_GAME" id="delete_GAME" value="{{$game->COD_GAME}}">
+                <button type="submit" class="btn btn-danger ml-4">Delete</button>
+            </form>
         </div>
 
 

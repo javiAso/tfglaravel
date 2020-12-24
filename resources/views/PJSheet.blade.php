@@ -282,11 +282,48 @@
         @endforeach
       </div>
     </div>
-    <div class="row pl-4 mt-4">
-        <div class="col-10">
+    <hr>
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            <label>Jugando la partida: </label>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+              <label>{{$gameName}}  </label>
+            </div>
+          </div>
+
+      </div>
+    </div>
+    <hr>
+    <div class="row pl-4">
+        <div class="col-8">
             <a href="{{ route('eq.store')}}"><button class="btn btn-dark">Buy equipment</button></a>
-            <a href="{{ route('sheet.updateSheet',$PJ->COD_PJ)}}"><button class="btn btn-dark ml-4">Update</button></a>
-            <a href="{{ route('listPJ.viewList')}}"><button class="btn btn-dark ml-4">Back</button></a>
+            <a href="{{ route('sheet.updateSheet',$PJ->COD_PJ)}}"><button class="btn btn-dark ml-1">Update</button></a>
+            <a href="{{ route('listPJ.viewList')}}"><button class="btn btn-dark ml-1">Back</button></a>
+        </div>
+
+            <div class="col-2">
+            @if ($PJ->COD_GAME == NULL)
+            <form action="{{ route('listgame.viewList')}}" method="post">
+                @csrf
+                <input type="hidden" name="COD_PJ" id="COD_PJ" value="{{$PJ->COD_PJ}}">
+                <input type="hidden" name="COD_GAME" id="COD_GAME" value="">
+                <button onclick="myFunction()" type="submit" class="btn btn-success ml-4">Join game</button>
+            </form>
+            @else
+            <form action="{{ route('listgame.viewList')}}" method="post">
+                @csrf
+                <input type="hidden" name="COD_PJ" id="COD_PJ" value="{{$PJ->COD_PJ}}">
+                <input type="hidden" name="COD_GAME" id="COD_GAME" value="-1">
+                <button type="submit" class="btn btn-info">Leave game</button>
+            </form>
+            @endif
+
         </div>
         <div class="col-2">
             <form action="{{ route('sheet.deleteSheet')}}" method="post">
@@ -294,9 +331,7 @@
                 <input type="hidden" name="COD_PJ" id="COD_PJ" value="{{$PJ->COD_PJ}}">
                 <button type="submit" class="btn btn-danger ml-4">Delete</button>
             </form>
-
-        </div>
-
+            </div>
     </div>
 
 

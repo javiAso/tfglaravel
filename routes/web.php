@@ -35,3 +35,6 @@ Route::get('/myGames', [GameController::class,'gameList'])->name('listgame.viewL
 
 Route::get('/game/{id}', [GameController::class,'viewGame'])->name('listGame.viewGame');
 
+Route::post('/myGames', [GameController::class,'manageGame'])->name('listgame.viewList');
+
+Route::get('/updateGame/{id}', [GameController::class,'updateGame'])->name('game.updateGame');
