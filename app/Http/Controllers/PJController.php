@@ -186,8 +186,12 @@ class PJController extends Controller
         session(['CLASS_PJ' => $pj->COD_CLASS]);
 
         //nombre partida
+        if ($pj->COD_GAME!=NULL) {
+            $gameName = Game::find($pj->COD_GAME)->TITTLE;
+        }else{
+            $gameName="El personaje no se encuentra en ninguna partida";
+        }
 
-        $gameName = Game::find($pj->COD_GAME)->TITTLE;
 
         return view('PJSheet', ['PJ' => $pj , 'talents' => $pjTalents, 'raceName' => $raceName, 'className' => $className, 'equipment' => $equipment, 'gameName' => $gameName]);
 

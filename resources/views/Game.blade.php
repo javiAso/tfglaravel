@@ -157,8 +157,8 @@
     <div class="row pl-4 mt-4">
         <div class="col-10">
 
-            <a href=""><button class="btn btn-dark ml-4">New Story</button></a>
-            <a href="{{ route('game.updateGame',$game->COD_GAME)}}"><button class="btn btn-dark ml-1">Update</button></a>
+            <a href="{{ route('story.newStory',$game->COD_GAME)}}"><button class="btn btn-dark ml-4">New Story</button></a>
+            <a href="{{ route('game.updateGame',$game->COD_GAME)}}" class="btn btn-dark ml-1">Update</a>
             <a href="{{ route('listgame.viewList')}}"><button class="btn btn-dark ml-4">Back</button></a>
         </div>
 

@@ -29,6 +29,7 @@ New Game
         </div>
       </div>
       <div class="row pl-4">
+        <input type="hidden" id="cod_game" name="cod_game" value="{{$game->COD_GAME}}">
         <button type="submit" class="btn btn-dark">Save</button>
         <a href="{{route('listgame.viewList')}}" class="btn btn-dark ml-4">Back</a>
       </div>

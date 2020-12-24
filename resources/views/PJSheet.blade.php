@@ -282,7 +282,7 @@
         @endforeach
       </div>
     </div>
-    <hr>
+     <hr>
     <div class="row">
       <div class="col">
         <div class="row">
@@ -299,6 +299,7 @@
 
       </div>
     </div>
+
     <hr>
     <div class="row pl-4">
         <div class="col-8">

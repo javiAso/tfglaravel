@@ -3,6 +3,7 @@
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\PJController;
+use App\Http\Controllers\StoryController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -38,3 +39,9 @@ Route::get('/game/{id}', [GameController::class,'viewGame'])->name('listGame.vie
 Route::post('/myGames', [GameController::class,'manageGame'])->name('listgame.viewList');
 
 Route::get('/updateGame/{id}', [GameController::class,'updateGame'])->name('game.updateGame');
+
+Route::get('/newStory/{codGame}', [StoryController::class, 'newStory'])->name('story.newStory');
+
+Route::get('/story/{id}', [StoryController::class,'viewStory'])->name('story.viewStory');
+
+Route::post('/story', [StoryController::class,'store'])->name('story.saveStory');
