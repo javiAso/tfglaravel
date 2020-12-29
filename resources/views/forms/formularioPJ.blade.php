@@ -54,7 +54,7 @@ New PJ
       </div>
       <div class="col-6">
         <div class="form-group">
-          <label>Choose 6 of those abilities:</label><br>
+          <label>Choose 4 of those abilities:</label><br>
           <div class="row">
             <div class="col">
               <div class="row">

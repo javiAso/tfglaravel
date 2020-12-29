@@ -14,7 +14,7 @@ class GameController extends Controller
 {
     public function store(Request $request){
 
-
+        $codUser= session('COD_USER');
         if (empty($request->cod_game)) {
             $game = new Game();
         } else {
@@ -23,7 +23,7 @@ class GameController extends Controller
 
         $game->TITTLE=$request->gameName;
         $game->INTRO=$request->gameDescription;
-        $game->COD_USER=2;
+        $game->COD_USER=$codUser;
         $game->save();
         //echo $game->COD_GAME;
         return $this->viewGame($game->COD_GAME);
@@ -59,22 +59,18 @@ class GameController extends Controller
     }
 
     public function gameList(){
+        $codUser= session('COD_USER');
+        $gamesOwned= GAME::where('COD_USER',$codUser)->get();
 
-        $gamesOwned= GAME::where('COD_USER',2)->get();
-
-/*         SELECT g.TITTLE FROM GAME g
-INNER JOIN PJ p
-ON g.COD_GAME = p.COD_GAME
-WHERE p.COD_USER = 2 */
 
         $gamesPlayed = DB::select('select g.TITTLE, g.COD_GAME, u.USERNAME FROM GAME g
         INNER JOIN PJ p
         ON g.COD_GAME = p.COD_GAME
         INNER JOIN USER u
         on u.COD_USER = g.COD_USER
-        WHERE p.COD_USER = ?', [2]);
-        $master = USER::where('COD_USER',2)->first();
-        return view('gameList', ['gamesOwned' => $gamesOwned , 'gamesPlayed' => $gamesPlayed, 'master' => $master]);
+        WHERE p.COD_USER = ?', [$codUser]);
+        $user = USER::where('COD_USER',$codUser)->first();
+        return view('gameList', ['gamesOwned' => $gamesOwned , 'gamesPlayed' => $gamesPlayed, 'user' => $user]);
 
     }
 
@@ -87,7 +83,12 @@ WHERE p.COD_USER = 2 */
             return $this->gameList();
         }
 
+        //Borrado de story
+        if (!empty($request->deleteStory)) {
+            STORY::find($request->deleteStory)->delete();
 
+            return $this->viewGame($request->COD_GAME);
+        }
 
         //Recuperamos el pj
         $pj = PJ::find($request->COD_PJ);

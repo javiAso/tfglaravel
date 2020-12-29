@@ -22,10 +22,10 @@ public function viewStory($id){
 
     public function store(Request $request){
 
-        if (empty($request->cod_story)){
+        if (empty($request->codStory)){
             $story = new Story();
         } else {
-            $story = Story::find($request->cod_story);
+            $story = Story::find($request->codStory);
         }
 
         $story->TITTLE=$request->storyName;
@@ -40,5 +40,14 @@ public function viewStory($id){
 
 
         }
+
+        public function updateStory($id){
+
+            return view('forms.formularioUpdateStory', ['story' => Story::find($id)]);
+
+
+            }
+
+
 
 }

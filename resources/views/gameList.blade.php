@@ -1,6 +1,6 @@
 @extends('layout')
 @section('titulo')
-User name
+{{$user->USERNAME}}
 @endsection
 @section('contenido')
 
@@ -14,20 +14,20 @@ User name
                         <th>Game tittle</th>
                         <th>Game master</th>
                         <th>View game</th>
-                        <th>Leave game</th>
+
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($gamesOwned as $game)
                     <tr>
                         <td class="font-weight-bold">{{$game->TITTLE}}</td>
-                        <td class="font-weight-bold">{{$master->USERNAME}}</td>
+                        <td class="font-weight-bold">{{$user->USERNAME}}</td>
                         <td>
                             <form action="{{ route('listGame.viewGame',$game->COD_GAME) }}" method="GET">
                                 <button type="submit" class="btn btn-success">Go</button>
                             </form>
                         </td>
-                        <td><button type="button" class="btn btn-danger">Leave</button></td>
+
                     </tr>
                     @endforeach
                 </tbody>
@@ -42,7 +42,7 @@ User name
                         <th>Game tittle</th>
                         <th>Game master</th>
                         <th>View game</th>
-                        <th>Leave game</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -55,7 +55,7 @@ User name
                                 <button type="submit" class="btn btn-success">Go</button>
                             </form>
                         </td>
-                        <td><button type="button" class="btn btn-danger">Leave</button></td>
+
                     </tr>
                     @endforeach
                 </tbody>

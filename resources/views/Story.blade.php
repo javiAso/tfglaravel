@@ -28,8 +28,20 @@
     </div>
 </div>
 </div>
-<div class="row pl-4">
-<a href="{{route ('listGame.viewGame',$story->COD_GAME)}}" class="btn btn-dark">Back</a>
+<div class="row pl-4 mt-4">
+    <div class="col-10">
+        <a href="{{route ('story.updateStory',$story->COD_STORY)}}" class="btn btn-dark">Update</a>
+        <a href="{{route ('listGame.viewGame',$story->COD_GAME)}}" class="btn btn-dark">Back</a>
+    </div>
+    <div class="col-2">
+        <form action="{{route ('listgame.viewList')}}" method="post">
+            @csrf
+            <input type="hidden" name="deleteStory" id="deleteStory" value="{{$story->COD_STORY}}">
+            <input type="hidden" name="COD_GAME" id="COD_GAME" value="{{$story->COD_GAME}}">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+
 </div>
 
 @endsection

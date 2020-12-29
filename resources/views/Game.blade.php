@@ -75,84 +75,21 @@
       </div>
     </div>
     <div class="card-columns mt-4">
+        @foreach ($stories as $story)
       <div class="card">
         <div class="card-header">
-          <h6 class="font-weight-bold">Story title</h6>
+          <h6 class="font-weight-bold">{{$story->TITTLE}}</h6>
         </div>
         <div class="card-body">
           <h6 class="card-title text-secondary">Uploaded by player</h6>
           <p class="card-text">
-            Aquí irá una breve información sobre lo que se puede ver en la
-            story que haya subido un jugador.
+            {{$story->DESCRIPTION}}
           </p>
-          <button type="button" class="btn btn-info">Go story</button>
+
+          <a href="{{route ('story.viewStory',$story->COD_STORY)}}" class="btn btn-info">Go story</a>
         </div>
       </div>
-      <div class="card">
-        <div class="card-header">
-          <h6 class="font-weight-bold">Story title</h6>
-        </div>
-        <div class="card-body">
-          <h6 class="card-title text-secondary">Uploaded by player</h6>
-          <p class="card-text">
-            Aquí irá una breve información sobre lo que se puede ver en la
-            story que haya subido un jugador.
-          </p>
-          <button type="button" class="btn btn-info">Go story</button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">
-          <h6 class="font-weight-bold">Story title</h6>
-        </div>
-        <div class="card-body">
-          <h6 class="card-title text-secondary">Uploaded by player</h6>
-          <p class="card-text">
-            Aquí irá una breve información sobre lo que se puede ver en la
-            story que haya subido un jugador.
-          </p>
-          <button type="button" class="btn btn-info">Go story</button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">
-          <h6 class="font-weight-bold">Story title</h6>
-        </div>
-        <div class="card-body">
-          <h6 class="card-title text-secondary">Uploaded by player</h6>
-          <p class="card-text">
-            Aquí irá una breve información sobre lo que se puede ver en la
-            story que haya subido un jugador.
-          </p>
-          <button type="button" class="btn btn-info">Go story</button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">
-          <h6 class="font-weight-bold">Story title</h6>
-        </div>
-        <div class="card-body">
-          <h6 class="card-title text-secondary">Uploaded by player</h6>
-          <p class="card-text">
-            Aquí irá una breve información sobre lo que se puede ver en la
-            story que haya subido un jugador.
-          </p>
-          <button type="button" class="btn btn-info">Go story</button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">
-          <h6 class="font-weight-bold">Story title</h6>
-        </div>
-        <div class="card-body">
-          <h6 class="card-title text-secondary">Uploaded by player</h6>
-          <p class="card-text">
-            Aquí irá una breve información sobre lo que se puede ver en la
-            story que haya subido un jugador.
-          </p>
-          <button type="button" class="btn btn-info">Go story</button>
-        </div>
-      </div>
+      @endforeach
     </div>
     <div class="row pl-4 mt-4">
         <div class="col-10">

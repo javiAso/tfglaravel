@@ -1,6 +1,6 @@
 @extends('layout')
 @section('titulo')
-User name
+{{$user->USERNAME}}
 @endsection
 @section('contenido')
 

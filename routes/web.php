@@ -4,11 +4,15 @@ use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\PJController;
 use App\Http\Controllers\StoryController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
-//Route::view('/', 'welcome');
+Route::view('/', 'forms.login')->name('login');
 
+Route::get('/logout', [UserController::class,'logout'] )->name('logout');
+
+Route::view('/register', 'forms.register')->name('register');
 
 Route::view('/newPJ', 'forms/formularioPJ')->name('sheet.newSheet');
 
@@ -44,4 +48,12 @@ Route::get('/newStory/{codGame}', [StoryController::class, 'newStory'])->name('s
 
 Route::get('/story/{id}', [StoryController::class,'viewStory'])->name('story.viewStory');
 
+Route::get('/updateStory/{codStory}', [StoryController::class, 'updateStory'])->name('story.updateStory');
+
 Route::post('/story', [StoryController::class,'store'])->name('story.saveStory');
+
+Route::post('/deleteStory', [StoryController::class,'delete'])->name('story.deleteStory');
+
+Route::post('/login', [UserController::class,'login'])->name('login.login');
+
+Route::post('/register', [UserController::class,'register'])->name('register.register');

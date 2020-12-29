@@ -15,6 +15,7 @@ use App\Models\TALENT;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\GameController;
+use App\Models\USER;
 use Illuminate\Validation\Rules\Exists;
 
 class PJController extends Controller
@@ -34,7 +35,7 @@ class PJController extends Controller
         $pj->NAME = $request->characterName;
         $pj->LEVEL = $request->lvl;
         $pj->XP = $request->expPoints;
-        $pj->COD_USER = 2;
+        $pj->COD_USER = session('COD_USER');;
         $pj->COD_RACE = $request->raceSelection;
         $pj->COD_CLASS = $request->classSelection;
         $pj->BACKGROUND = $request->backGround;
@@ -145,10 +146,12 @@ class PJController extends Controller
         ->join('RACE', 'PJ.COD_RACE', '=', 'RACE.COD_RACE')
         ->join('CLASS', 'PJ.COD_CLASS', '=', 'CLASS.COD_CLASS')
         ->select('PJ.COD_PJ','PJ.NAME','PJ.LEVEL','CLASS.NAME as CLASS','RACE.NAME as RACE')
-        ->where('PJ.COD_USER','=',2)
+        ->where('PJ.COD_USER','=',session('COD_USER'))
         ->get();
 
-        return view('home', ['PJs' => $pjs]);
+        $user = USER::find(session('COD_USER'));
+
+        return view('home', ['PJs' => $pjs , 'user'=>$user]);
 
     }
 

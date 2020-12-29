@@ -25,6 +25,7 @@
                 </li>
             </ul>
         </div>
+        <div class="f-right mr-5"><a href="{{route ('logout')}}" class="text-dark mr-5 font-weight-bold">Logout</a></div>
     </nav>
 </header>
 <body class="bg-dark">
