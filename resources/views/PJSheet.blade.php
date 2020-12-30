@@ -303,35 +303,42 @@
     <hr>
     <div class="row pl-4">
         <div class="col-8">
+            @if ($user->COD_USER == $PJ->COD_USER)
             <a href="{{ route('eq.store')}}"><button class="btn btn-dark">Buy equipment</button></a>
             <a href="{{ route('sheet.updateSheet',$PJ->COD_PJ)}}"><button class="btn btn-dark ml-1">Update</button></a>
-            <a href="{{ route('listPJ.viewList')}}"><button class="btn btn-dark ml-1">Back</button></a>
+            @endif
+            @if ($PJ->COD_GAME!=NULL)
+            <a href="{{ route('listGame.viewGame',$PJ->COD_GAME)}}" class="btn btn-dark ml-1">Back to the game</a>
+            @endif
         </div>
 
             <div class="col-2">
-            @if ($PJ->COD_GAME == NULL)
-            <form action="{{ route('listgame.viewList')}}" method="post">
-                @csrf
-                <input type="hidden" name="COD_PJ" id="COD_PJ" value="{{$PJ->COD_PJ}}">
-                <input type="hidden" name="COD_GAME" id="COD_GAME" value="">
-                <button onclick="myFunction()" type="submit" class="btn btn-success ml-4">Join game</button>
-            </form>
-            @else
-            <form action="{{ route('listgame.viewList')}}" method="post">
-                @csrf
-                <input type="hidden" name="COD_PJ" id="COD_PJ" value="{{$PJ->COD_PJ}}">
-                <input type="hidden" name="COD_GAME" id="COD_GAME" value="-1">
-                <button type="submit" class="btn btn-info">Leave game</button>
-            </form>
-            @endif
-
+                @if ($user->COD_USER == $PJ->COD_USER)
+                    @if ($PJ->COD_GAME == NULL)
+                    <form action="{{ route('listgame.viewList')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="COD_PJ" id="COD_PJ" value="{{$PJ->COD_PJ}}">
+                        <input type="hidden" name="COD_GAME" id="COD_GAME" value="">
+                        <button onclick="myFunction()" type="submit" class="btn btn-success ml-4">Join game</button>
+                    </form>
+                    @else
+                    <form action="{{ route('listgame.viewList')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="COD_PJ" id="COD_PJ" value="{{$PJ->COD_PJ}}">
+                        <input type="hidden" name="COD_GAME" id="COD_GAME" value="-1">
+                        <button type="submit" class="btn btn-info">Leave game</button>
+                    </form>
+                    @endif
+                @endif
         </div>
         <div class="col-2">
+            @if ($user->COD_USER == $PJ->COD_USER)
             <form action="{{ route('sheet.deleteSheet')}}" method="post">
                 @csrf
                 <input type="hidden" name="COD_PJ" id="COD_PJ" value="{{$PJ->COD_PJ}}">
                 <button type="submit" class="btn btn-danger ml-4">Delete</button>
             </form>
+            @endif
             </div>
     </div>
 

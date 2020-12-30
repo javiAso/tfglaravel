@@ -5,8 +5,8 @@
 @section('contenido')
 
     <div class="card-deck">
-      <div class="row">
-        <div class="col-8">
+      <div class="row w-100">
+        <div class="col-6">
           <div class="card w-100">
             <div class="card-header">
               <h4 class="text-center font-weight-bold">Game introduction</h4>
@@ -28,12 +28,9 @@
                   </div>
             </div>
           </div>
-        <div class="col-2">
+        <div class="col-4">
           <div class="card w-100">
-            <img class="card-img" src="/images/pathToYourImage.png">
-            <div class="card-img-overlay">
-              <p class="card-text">Game img</p>
-            </div>
+            <img class="card-img" src="{{$game->URL_IMAGE}}">
           </div>
         </div>
 
@@ -81,7 +78,7 @@
           <h6 class="font-weight-bold">{{$story->TITTLE}}</h6>
         </div>
         <div class="card-body">
-          <h6 class="card-title text-secondary">Uploaded by player</h6>
+          <h6 class="card-title text-secondary">Uploaded by {{$story->USERNAME}}</h6>
           <p class="card-text">
             {{$story->DESCRIPTION}}
           </p>
@@ -95,16 +92,21 @@
         <div class="col-10">
 
             <a href="{{ route('story.newStory',$game->COD_GAME)}}"><button class="btn btn-dark ml-4">New Story</button></a>
+            @if ($game->COD_USER == $user->COD_USER)
             <a href="{{ route('game.updateGame',$game->COD_GAME)}}" class="btn btn-dark ml-1">Update</a>
+            @endif
             <a href="{{ route('listgame.viewList')}}"><button class="btn btn-dark ml-4">Back</button></a>
         </div>
 
         <div class="col-2">
+            @if ($game->COD_USER == $user->COD_USER)
             <form action="{{ route('listgame.viewList')}}" method="post">
                 @csrf
                 <input type="hidden" name="delete_GAME" id="delete_GAME" value="{{$game->COD_GAME}}">
                 <button type="submit" class="btn btn-danger ml-4">Delete</button>
             </form>
+            @endif
+
         </div>
 
 

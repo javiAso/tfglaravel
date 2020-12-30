@@ -6,7 +6,7 @@ Update Story
 
 
 
-<form action="{{ route('story.saveStory')}}" method="POST">
+<form action="{{ route('story.saveStory')}}" method="POST" enctype="multipart/form-data">
 
 
     @csrf

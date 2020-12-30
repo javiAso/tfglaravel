@@ -20,10 +20,14 @@
             <label for="" class="ml-5">Story file: </label>
         </div>
         <div class="col-3">
-
-            <a href="#" class="btn btn-info btn-lg">
+            @if ($story->URL==null)
+                <span>Esta story no tiene archivo</span>
+            @else
+            <a href="{{$story->URL}}" class="btn btn-info btn-lg" target="blank">
                 <span class="glyphicon glyphicon-file"></span> File
               </a>
+            @endif
+
         </div>
     </div>
 </div>

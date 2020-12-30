@@ -15,13 +15,10 @@
     <nav class="navbar navbar-expand navbar-dark">
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul class="navbar-nav mr-auto ml-5">
-                <li class="nav-item"> <a class="nav-link text-dark font-weight-bold ml-5 textoGrande" href="#!">Home</a>
+                <li class="nav-item"> <a class="nav-link text-dark font-weight-bold ml-5 textoGrande" href="{{route ('listPJ.viewList')}}">Sheets</a>
                 </li>
                 <li class="nav-item"> <a class="nav-link text-dark font-weight-bold ml-5 textoGrande"
-                        href="#!">About</a>
-                </li>
-                <li class="nav-item"> <a class="nav-link text-dark font-weight-bold ml-5 textoGrande"
-                        href="#!">Contact</a>
+                        href="{{route ('listgame.viewList')}}">Games</a>
                 </li>
             </ul>
         </div>

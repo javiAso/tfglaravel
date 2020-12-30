@@ -5,6 +5,7 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\PJController;
 use App\Http\Controllers\StoryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FileController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -24,7 +25,7 @@ Route::post('/equipment', [EquipmentController::class,'addItem'])->name('eq.addI
 
 Route::get('/myCharacters', [PJController::class,'addEquipment'])->name('listPJ.addEQ');//
 
-Route::get('/mysheets', [PJController::class,'pjList'])->name('listPJ.viewList');
+Route::get('/mySheets', [PJController::class,'pjList'])->name('listPJ.viewList');
 
 Route::get('/sheet/{id}', [PJController::class,'viewSheet'])->name('listPJ.viewSheet');
 
@@ -57,3 +58,5 @@ Route::post('/deleteStory', [StoryController::class,'delete'])->name('story.dele
 Route::post('/login', [UserController::class,'login'])->name('login.login');
 
 Route::post('/register', [UserController::class,'register'])->name('register.register');
+
+

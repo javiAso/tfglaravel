@@ -8,11 +8,15 @@ use App\Models\Story;
 use App\Models\USER;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
 
 
 class GameController extends Controller
 {
     public function store(Request $request){
+
+
 
         $codUser= session('COD_USER');
         if (empty($request->cod_game)) {
@@ -25,7 +29,13 @@ class GameController extends Controller
         $game->INTRO=$request->gameDescription;
         $game->COD_USER=$codUser;
         $game->save();
-        //echo $game->COD_GAME;
+
+        if ($request->file('gameFile')!=null) {
+            Storage::deleteDirectory("public/Game$game->COD_GAME/GameImg");
+            $game->URL_IMAGE=Storage::url($request->file('gameFile')->store("public/Game$game->COD_GAME/GameImg"));
+            $game->save();
+        }
+
         return $this->viewGame($game->COD_GAME);
 
 
@@ -52,9 +62,11 @@ class GameController extends Controller
         $stories = Story::where('COD_GAME',$id)->get();
 
 
+        //user
 
+        $user = USER::where('COD_USER',session('COD_USER'))->first();
 
-        return view('Game', ['pjs' => $pjs , 'stories' => $stories, 'game' => $game]);
+        return view('Game', ['pjs' => $pjs , 'stories' => $stories, 'game' => $game , 'user' => $user]);
 
     }
 
@@ -79,14 +91,16 @@ class GameController extends Controller
         // Si estamos ante un borrado
         if (!empty($request->delete_GAME)) {
             DB::update('update PJ set COD_GAME = NULL where COD_GAME = ?', [$request->delete_GAME]);
+            STORY::where('COD_GAME',$request->delete_GAME)->delete();
             GAME::find($request->delete_GAME)->delete();
+            Storage::deleteDirectory("public/Game$request->delete_GAME");
             return $this->gameList();
         }
 
         //Borrado de story
         if (!empty($request->deleteStory)) {
             STORY::find($request->deleteStory)->delete();
-
+            Storage::deleteDirectory("public/Game$request->COD_GAME/Story$request->deleteStory");
             return $this->viewGame($request->COD_GAME);
         }
 

@@ -195,8 +195,10 @@ class PJController extends Controller
             $gameName="El personaje no se encuentra en ninguna partida";
         }
 
+        //user
+        $user = USER::where('COD_USER',session('COD_USER'))->first();
 
-        return view('PJSheet', ['PJ' => $pj , 'talents' => $pjTalents, 'raceName' => $raceName, 'className' => $className, 'equipment' => $equipment, 'gameName' => $gameName]);
+        return view('PJSheet', ['PJ' => $pj , 'talents' => $pjTalents, 'raceName' => $raceName, 'className' => $className, 'equipment' => $equipment, 'gameName' => $gameName, 'user' => $user]);
 
     }
 

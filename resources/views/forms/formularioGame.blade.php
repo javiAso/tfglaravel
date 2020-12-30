@@ -6,7 +6,7 @@ New Game
 
 
 
-<form action="{{ route('game.store') }}" method="POST">
+<form action="{{ route('game.store') }}" method="POST" enctype="multipart/form-data">
 
     @csrf
 
@@ -18,7 +18,7 @@ New Game
           </div>
           <div class="form-group">
             <label for="gameFile">Select image</label><br>
-            <input type="file" class="form-control-file" id="gameFile" name="gameFile">
+            <input type="file" class="form-control-file" id="gameFile" name="gameFile" accept="image/*">
           </div>
         </div>
         <div class="col-6">

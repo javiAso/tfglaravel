@@ -6,7 +6,7 @@ New Story
 
 
 
-<form action="{{ route('story.saveStory')}}" method="POST">
+<form action="{{ route('story.saveStory')}}" method="POST" enctype="multipart/form-data">
 
 
     @csrf
@@ -19,6 +19,7 @@ New Story
         </div>
         <div class="form-group">
           <label for="storyFile">Select file</label><br>
+
           <input type="file" class="form-control-file" id="storyFile" name="storyFile">
         </div>
       </div>
