@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Story;
 use App\Models\USER;
-use App\Models\User as ModelsUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

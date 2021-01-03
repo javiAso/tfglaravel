@@ -10,7 +10,7 @@ class Cesta {
 
     public function addProduct(Equipment $equipment) {
         $cod = $equipment->COD_EQUIPMENT;
-        //echo $equipment->PRICE;
+
         if (isset($this->listadoProductos["$cod"])) {
             $this->cantidadProductos["$cod"] += 1;
         } else {
@@ -18,6 +18,11 @@ class Cesta {
             $this->listadoProductos["$cod"] = $equipment;
             $this->cantidadProductos["$cod"] = 1;
         }
+    }
+
+    public function emptyCart(){
+        $this->listadoProductos = [];
+        $this->cantidadProductos = [];
     }
 
     private function calculaTotal() {

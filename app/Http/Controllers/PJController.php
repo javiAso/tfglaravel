@@ -14,9 +14,7 @@ use App\Models\RACE;
 use App\Models\TALENT;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\GameController;
 use App\Models\USER;
-use Illuminate\Validation\Rules\Exists;
 
 class PJController extends Controller
 {

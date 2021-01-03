@@ -47,7 +47,6 @@ class GameController extends Controller
 
         //personajes
 
-        //$pjs = PJ::where('COD_GAME',$id)->get();
 
         $pjs=DB::table('PJ')
         ->join('RACE', 'PJ.COD_RACE', '=', 'RACE.COD_RACE')

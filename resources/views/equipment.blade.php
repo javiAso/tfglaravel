@@ -56,7 +56,8 @@ Shop
                   <div>
 
                       <a href="{{ route('listPJ.addEQ') }}"><button type="submit" class="btn btn-dark">End shopping</button></a>
-
+{{--                       <a href="{{ route('listPJ.emptyCart') }}"><button type="submit" class="btn btn-warning">Empty Cart</button></a>
+ --}}
                   </div>
             </div>
 
