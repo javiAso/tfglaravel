@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\USER;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
-
+use PhpParser\Node\Stmt\TryCatch;
 
 class UserController extends Controller
 {
@@ -40,9 +39,14 @@ class UserController extends Controller
     public function register(Request $request)
     {
 
-        //echo $request->password;
-        DB::insert('insert into USER (USERNAME, PASS , EMAIL) values (?,AES_ENCRYPT(?,?), ?)', [$request->username,$request->password,$request->username, $request->email]);
-        return redirect()->route('login');
+        try {
+            DB::insert('insert into USER (USERNAME, PASS , EMAIL) values (?,AES_ENCRYPT(?,?), ?)', [$request->username,$request->password,$request->username, $request->email]);
+            return redirect()->route('login');
+        } catch (\Illuminate\Database\QueryException $ex) {
+            $message='El usuario o el email ya existen';
+            return redirect()->route('register.message',$message);
+        }
+
 
     }
 
@@ -52,6 +56,12 @@ class UserController extends Controller
         session(['COD_USER' => ""]);
 
         return redirect()->route('login');
+
+    }
+
+    public function registerMessage($message){
+
+        return view('forms.register',['message'=>$message]);
 
     }
 }

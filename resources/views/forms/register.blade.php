@@ -1,6 +1,6 @@
 @extends('layout')
 @section('titulo')
-Sign in
+Sign up
 @endsection
 @section('contenido')
 <form action="{{route('register.register')}}" method="POST">
@@ -23,10 +23,21 @@ Sign in
     </div>
 
 
+    <br>
+        <span class="text-danger">{{$message ?? ''}}</span>
+
+
     <br><br>
-    <button type="submit" class="btn btn-dark">Register</button>
+    <div class="row">
+        <div class="col">
+            <button type="submit" class="btn btn-dark">Register</button>
+            <a href="{{route('login')}}" class="btn btn-dark">Sign in</a>
+        </div>
+    </div>
+
 
 
   </form>
+
 
 @endsection

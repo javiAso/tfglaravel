@@ -15,6 +15,8 @@ Route::get('/logout', [UserController::class,'logout'] )->name('logout');
 
 Route::view('/register', 'forms.register')->name('register');
 
+Route::get('/register/{message}', [UserController::class,'registerMessage'])->name('register.message');
+
 Route::view('/newPJ', 'forms/formularioPJ')->name('sheet.newSheet');
 
 Route::post('/sheet', [PJController::class,'store'])->name('pj.store');
