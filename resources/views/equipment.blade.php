@@ -53,11 +53,18 @@ Shop
                         </tr>
                     </tbody>
                   </table>
-                  <div>
+                  <div class="row">
+                    <div class="col">
+                        <a href="{{ route('listPJ.addEQ') }}" class="btn btn-dark">End shopping</a>
+                    </div>
+                    <div class="col">
+                        <form action="{{ route('eq.addItem') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="emptyCart" value="emptyCart" id="emptyCart">
+                            <button type="submit" class="btn btn-warning">Empty Cart</button>
+                          </form>
+                    </div>
 
-                      <a href="{{ route('listPJ.addEQ') }}"><button type="submit" class="btn btn-dark">End shopping</button></a>
-{{--                       <a href="{{ route('listPJ.emptyCart') }}"><button type="submit" class="btn btn-warning">Empty Cart</button></a>
- --}}
                   </div>
             </div>
 

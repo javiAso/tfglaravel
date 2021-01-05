@@ -24,7 +24,9 @@ class EquipmentController extends Controller
 
     public function addItem(Request $request){
 
-
+        if($request->emptyCart!=null){
+             return $this->emptyCart();
+        }
         //$this->cesta["$request->itemID"] = $request->itemID;
         session_start();
         //if (isEmpty(session('cesta'))) session('cesta', new Cesta);
